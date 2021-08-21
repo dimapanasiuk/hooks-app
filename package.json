@@ -7,6 +7,8 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "eslint": "^7.32.0",
+    "eslint-plugin-import": "^2.24.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
     "husky": "^7.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -17,12 +19,13 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint \"src/**/*.js\""
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn eslint --fix"
-      }
+      "pre-commit": "yarn lint --fix"
+    }
   },
   "eslintConfig": {
     "extends": [
