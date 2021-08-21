@@ -20,11 +20,13 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint \"src/**/*.js\""
-  },
+    "lint": "eslint"
+  }, 
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint --fix"
+      "pre-add": "yarn lint",
+      "pre-commit": "yarn lint",
+      "pre-push": "yarn lint"
     }
   },
   "eslintConfig": {
