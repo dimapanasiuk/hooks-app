@@ -10,9 +10,11 @@
     "eslint-plugin-import": "^2.24.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "husky": "^7.0.1",
+    "lodash": "^4.17.21",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
+    "uuid": "^8.3.2",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
@@ -21,7 +23,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint"
-  }, 
+  },
   "husky": {
     "hooks": {
       "pre-add": "yarn lint",

@@ -11,6 +11,11 @@
     "node": true
   },
   "rules": {
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/prop-types": "off",
+    "indent":["error", 2],
+    "semi": [2, "always"],
+    "quotes": ["error", "single"],
+    "react/jsx-props-no-spreading": [1]  
   }   
 }
