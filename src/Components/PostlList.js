@@ -6,7 +6,7 @@ const PostList = ({ posts, title, remove }) => (!posts.length
   ? <h1 style={{ textAlign: 'center' }}>List of posts is empty</h1>
   : (
     <div>
-      <h1>{title}</h1>
+      <h1 style={{ display: 'flex', justifyContent: 'center' }}>{title}</h1>
       <TransitionGroup>
         { posts.map((post, num) => (
           <CSSTransition
