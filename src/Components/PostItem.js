@@ -1,15 +1,16 @@
 import React from 'react';
 import { get } from 'lodash';
+import Button from './UI/button/Button';
 
-const PostItem = ({ post, number }) => (
+const PostItem = ({ post, number, remove }) => (
   <div className="post">
     <h1>{number}</h1>
     <div>
       <strong>{get(post, 'title')}</strong>
-      {get(post, 'body')}
+      <p>{get(post, 'body')}</p>
     </div>
     <div className="post_btns">
-      <button type="button">Delete</button>
+      <Button onClick={() => remove(post)} type="button">Delete</Button>
     </div>
   </div>
 );
