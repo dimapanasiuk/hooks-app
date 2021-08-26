@@ -1,6 +1,6 @@
 import React from 'react';
 import { get } from 'lodash';
-import Button from './UI/button/Button';
+import Button from './UI/button';
 
 const PostItem = ({ post, number, remove }) => (
   <div className="post">

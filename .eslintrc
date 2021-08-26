@@ -17,6 +17,7 @@
     "semi": [2, "always"],
     "quotes": ["error", "single"],
     "react/jsx-props-no-spreading": "off",
-    "no-unused-vars": "off"
+    "no-unused-vars": "warn",
+    "import/prefer-default-export": "off"
   }   
 }

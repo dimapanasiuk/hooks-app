@@ -1,38 +1,36 @@
-import React, { useMemo, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PostFilter from './Components/PostFilter';
 import PostList from './Components/PostlList';
 import PostForm from './Components/PostForm';
-import Modal from './Components/UI/modal/Modal';
-import MyButton from './Components/UI/button/Button';
+import Modal from './Components/UI/modal';
+import MyButton from './Components/UI/button';
+import Loader from './Components/UI/loader';
+import useFetching from './hooks/useFetching';
+import { usePosts } from './hooks/usePosts';
+import PostServices from './API/PostService';
 
 import './styles/App.css';
 
 const App = () => {
-  const [posts, setPosts] = useState([
-    { id: 1, title: 'young', body: 'text body JS1' },
-    { id: 2, title: 'dimas', body: 'JS2' },
-    { id: 3, title: 'serg', body: 'body ' },
-    { id: 4, title: 'and', body: 'text ' },
-  ]);
-
+  const [posts, setPosts] = useState([]);
   const [filter, setFilter] = useState({ sort: '', query: '' });
   const [modal, setModal] = useState(false);
+
+  const [fetchPosts, isPostsLoading, postError] = useFetching(async () => {
+    const postsRes = await PostServices.getAll();
+    setPosts(postsRes);
+  });
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+
+  const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query);
 
   const createPost = (newPost) => {
     setPosts([...posts, newPost]);
     setModal(false);
   };
-
-  const sortedPosts = useMemo(() => {
-    if (filter.sort) {
-      return [...posts].sort((a, b) => a[filter.sort].localeCompare(b[filter.sort]));
-    }
-    return posts;
-  }, [filter.sort, posts]);
-
-  const sortedAndSearchedPosts = useMemo(() => sortedPosts.filter(
-    (post) => post.title.toLowerCase().includes(filter.query),
-  ), [filter.query, sortedPosts]);
 
   const removePost = (post) => {
     setPosts(posts.filter((p) => p.id !== post.id));
@@ -45,7 +43,15 @@ const App = () => {
         <PostForm create={createPost} />
       </Modal>
       <PostFilter filter={filter} setFilter={setFilter} />
-      <PostList remove={removePost} posts={sortedAndSearchedPosts} title="Posts" />
+      {postError && (
+        <h1>
+          your error is
+          {postError}
+        </h1>
+      ) }
+      {isPostsLoading ? <div style={{ display: 'flex', justifyContent: 'center' }}><Loader /></div> : (
+        <PostList remove={removePost} posts={sortedAndSearchedPosts} title="Posts" />
+      )}
     </div>
   );
 };

@@ -1,6 +1,5 @@
 import React from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { v4 as uuidv4 } from 'uuid';
 import PostItem from './PostItem';
 
 const PostList = ({ posts, title, remove }) => (!posts.length
