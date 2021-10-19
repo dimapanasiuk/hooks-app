@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Provider, atom, useAtom } from 'jotai';
 import './styles/App.css';
 import { BrowserRouter } from 'react-router-dom';
 import Navbar from './Components/UI/navbar';
@@ -9,15 +10,17 @@ const App = () => {
   const [isAuth, setIsAuth] = useState(false);
 
   return (
-    <AuthContext.Provider value={
-      { isAuth, setIsAuth }
-    }
-    >
-      <BrowserRouter>
-        <Navbar />
-        <AppRouter />
-      </BrowserRouter>
-    </AuthContext.Provider>
+    <Provider>
+      <AuthContext.Provider value={
+        { isAuth, setIsAuth }
+      }
+      >
+        <BrowserRouter>
+          <Navbar />
+          <AppRouter />
+        </BrowserRouter>
+      </AuthContext.Provider>
+    </Provider>
   );
 };
 
