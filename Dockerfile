@@ -1,4 +1,6 @@
 FROM node:14-alpine AS development
+#название image(образа) который мы хотим использовать для контейнера 
+
 ENV NODE_ENV development
 # Add a work directory
 WORKDIR /app
